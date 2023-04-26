@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This software is in the public domain under CC0 1.0 Universal plus a
+Grant of Patent License.
+
+To the extent possible under law, the author(s) have dedicated all
+copyright and related and neighboring rights to this software to the
+public domain worldwide. This software is distributed without any
+warranty.
+
+You should have received a copy of the CC0 Public Domain Dedication
+along with this software (see the LICENSE.md file). If not, see
+<http://creativecommons.org/publicdomain/zero/1.0/>.
+-->
+<entity-facade-xml type="demo">
+
+    <moqui.basic.Enumeration enumId="PctGender" description="Gender" enumTypeId="PartyClassificationType"/>
+    <moqui.basic.Enumeration enumId="PctHairColor" description="Hair Color" enumTypeId="PartyClassificationType"/>
+    <moqui.basic.Enumeration enumId="PctEyeColor" description="Eye Color" enumTypeId="PartyClassificationType"/>
+    <moqui.basic.Enumeration enumId="PctCamera" description="Camera" enumTypeId="PartyClassificationType"/>
+
+    <mantle.party.PartyClassification classificationTypeEnumId="PctHairColor" partyClassificationId="PchcBlonde" description="Blonde"/>
+    <mantle.party.PartyClassification classificationTypeEnumId="PctHairColor" partyClassificationId="PchcBlack" description="Black"/>
+    <mantle.party.PartyClassification classificationTypeEnumId="PctHairColor" partyClassificationId="PchcAuburn" description="Auburn"/>
+    <mantle.party.PartyClassification classificationTypeEnumId="PctHairColor" partyClassificationId="PchcRed" description="Red"/>
+    <mantle.party.PartyClassification classificationTypeEnumId="PctHairColor" partyClassificationId="PchcGrey" description="Grey"/>
+    <mantle.party.PartyClassification classificationTypeEnumId="PctHairColor" partyClassificationId="PchcWhite" description="White"/>
+    <mantle.party.PartyClassification classificationTypeEnumId="PctHairColor" partyClassificationId="PchcBrown" description="Brown"/>
+    <mantle.party.PartyClassification classificationTypeEnumId="PctGender" partyClassificationId="PcgMale" description="Male"/>
+    <mantle.party.PartyClassification classificationTypeEnumId="PctGender" partyClassificationId="PcgFemale" description="Female"/>
+    <mantle.party.PartyClassification classificationTypeEnumId="PctGender" partyClassificationId="PcgNonBinary" description="Non Binary"/>
+    <mantle.party.PartyClassification classificationTypeEnumId="PctEyeColor" partyClassificationId="PcecBrown" description="Brown"/>
+    <mantle.party.PartyClassification classificationTypeEnumId="PctEyeColor" partyClassificationId="PcecBlue" description="Blue"/>
+    <mantle.party.PartyClassification classificationTypeEnumId="PctEyeColor" partyClassificationId="PcecGreen" description="Green"/>
+    <mantle.party.PartyClassification classificationTypeEnumId="PctEyeColor" partyClassificationId="PcecHazel" description="Hazel"/>
+    <mantle.party.PartyClassification classificationTypeEnumId="PctEyeColor" partyClassificationId="PcecAmber" description="Amber"/>
+    <mantle.party.PartyClassification classificationTypeEnumId="PctEyeColor" partyClassificationId="PcecGray" description="Gray"/>
+    <mantle.party.PartyClassification classificationTypeEnumId="PctCamera" partyClassificationId="PccDslr" description="DSLR"/>
+    <mantle.party.PartyClassification classificationTypeEnumId="PctCamera" partyClassificationId="PccMirrorless" description="Mirrorless"/>
+    <mantle.party.PartyClassification classificationTypeEnumId="PctCamera" partyClassificationId="PccPointAndShoot" description="Point and Shoot"/>
+    <mantle.party.PartyClassification classificationTypeEnumId="PctCamera" partyClassificationId="PccPhone" description="Phone"/>
+    <mantle.party.PartyClassification classificationTypeEnumId="PctCamera" partyClassificationId="PccFilm" description="Film"/>
+    <mantle.party.PartyClassification classificationTypeEnumId="PctCamera" partyClassificationId="PccPolaroid" description="Polaroid"/>
+
+    <moqui.basic.Enumeration enumId="StProgrammer" description="Programmer" enumTypeId="SkillType"/>
+    <moqui.basic.Enumeration enumId="StFashion" description="Fashion" enumTypeId="SkillType"/>
+    <moqui.basic.Enumeration enumId="StArt" description="Art" enumTypeId="SkillType"/>
+    <moqui.basic.Enumeration enumId="StInfluencer" description="Influencer" enumTypeId="SkillType"/>
+    <moqui.basic.Enumeration enumId="StWedding" description="Wedding" enumTypeId="SkillType"/>
+    <moqui.basic.Enumeration enumId="StSport" description="Sport" enumTypeId="SkillType"/>
+
+    <mantle.humanres.position.EmplPositionClass emplPositionClassId="Model" title="Model">
+        <mantle.humanres.position.EmplPositionClassDimension uomDimensionTypeId="Height"/>
+        <mantle.party.EmplPositionClassPtyClsTp classificationTypeEnumId="PctHairColor"/>
+        <mantle.party.EmplPositionClassPtyClsTp classificationTypeEnumId="PctGender"/>
+        <mantle.party.EmplPositionClassPtyClsTp classificationTypeEnumId="PctEyeColor"/>
+        <mantle.humanres.position.EmplPositionClassSkill skillTypeEnumId="StFashion"/>
+        <mantle.humanres.position.EmplPositionClassSkill skillTypeEnumId="StArt"/>
+        <mantle.humanres.position.EmplPositionClassSkill skillTypeEnumId="StInfluencer"/>
+    </mantle.humanres.position.EmplPositionClass>
+    <mantle.humanres.position.EmplPositionClass emplPositionClassId="Photographer" title="Photographer">
+        <mantle.party.EmplPositionClassPtyClsTp classificationTypeEnumId="PctGender"/>
+        <mantle.party.EmplPositionClassPtyClsTp classificationTypeEnumId="PctCamera"/>
+        <mantle.humanres.position.EmplPositionClassSkill skillTypeEnumId="StWedding"/>
+        <mantle.humanres.position.EmplPositionClassSkill skillTypeEnumId="StFashion"/>
+    </mantle.humanres.position.EmplPositionClass>
+
+
+</entity-facade-xml>
