@@ -13,13 +13,10 @@ along with this software (see the LICENSE.md file). If not, see
 <http://creativecommons.org/publicdomain/zero/1.0/>.
 -->
 <screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-3.xsd"
-        default-menu-title="Accounts" default-menu-index="99" menu-image="fa fa-user" menu-image-type="icon">
-    <!--    default-menu-title="Your Account" screen-theme-type-enum-id="STT_WE_CREATE" default-menu-index="99" menu-image="fa fa-user" menu-image-type="icon">-->
+        default-menu-title="Message" default-menu-index="99" menu-image="fa fa-comment" menu-image-type="icon" default-menu-include="true">
 
-    <subscreens default-item="FindAccount"/>
+    <subscreens default-item="FindMessageParty"/>
     <widgets>
-        <text><![CDATA[<q-page-container class="q-ma-sm"><q-page>]]></text>
-        <subscreens-panel id="AccountPanel" type="tab"/>
-        <text><![CDATA[</q-page></q-page-container><r-menu></r-menu>]]></text>
+        <subscreens-panel id="MessagePanel" type="tab"/>
     </widgets>
 </screen>
