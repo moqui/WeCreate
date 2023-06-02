@@ -199,11 +199,11 @@ along with this software (see the LICENSE.md file). If not, see
 
     <view-entity entity-name="PartyDetailAndRoleAndContentAndSettingAndRelationshipAndEmplApplication" package="mantle.party">
         <member-entity entity-alias="PTY" entity-name="mantle.party.Party"/>
-        <member-entity entity-alias="PCNT" entity-name="mantle.party.PartyContent" join-from-alias="PTY">
+        <member-entity entity-alias="PCNT" entity-name="mantle.party.PartyContent" join-from-alias="PTY" join-optional="true">
             <key-map field-name="partyId"/></member-entity>
         <member-entity entity-alias="PSET" entity-name="mantle.party.PartySetting" join-from-alias="PTY" join-optional="true">
             <key-map field-name="partyId"/></member-entity>
-        <member-entity entity-alias="PSTYP" entity-name="mantle.party.PartySettingType" join-from-alias="PSET">
+        <member-entity entity-alias="PSTYP" entity-name="mantle.party.PartySettingType" join-from-alias="PSET" join-optional="true">
             <key-map field-name="partySettingTypeId"/></member-entity>
         <member-entity entity-alias="PREL" entity-name="mantle.party.PartyRelationship" join-from-alias="PTY">
             <key-map field-name="partyId" related="toPartyId"/></member-entity>

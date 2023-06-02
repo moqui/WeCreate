@@ -145,15 +145,6 @@ along with this software (see the LICENSE.md file). If not, see
         <mantle.party.agreement.AgreementContent contentTypeEnumId="AcntDocument" agreementContentId="TermsOfUseTemplateTemplateContent" contentLocation="/content/TermsOfUse"/>
     </mantle.party.agreement.Agreement>
 
-    <delete-moqui.resource.DbResourceFileHistory resourceId="CookiesPolicy" versionName="01"/>
-    <delete-moqui.resource.DbResourceFile resourceId="CookiesPolicy"/>
-    <delete-moqui.resource.DbResource resourceId="CookiesPolicy"/>
-    <delete-moqui.resource.wiki.WikiPage wikiPageId="AgreementPage"/>
-    <delete-moqui.resource.wiki.WikiPageHistory wikiPageId="CookiesPolicyPage" historySeqId="01"/>
-    <delete-moqui.resource.wiki.WikiPage wikiPageId="CookiesPolicyPage"/>
-    <delete-mantle.party.agreement.AgreementContent agreementContentId="CookiesPolicyTemplateContent"/>
-    <delete-mantle.party.agreement.Agreement agreementId="CookiesPolicyTemplate"/>
-
     <!-- ==================================================== -->
     <!-- =============== WeCreate Project Data ============== -->
     <!-- ==================================================== -->

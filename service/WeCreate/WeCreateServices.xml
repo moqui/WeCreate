@@ -13,9 +13,7 @@ along with this software (see the LICENSE.md file). If not, see
 <http://creativecommons.org/publicdomain/zero/1.0/>.
 -->
 <services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/service-definition-3.xsd">
-    <!--                                -->
-    <!-- Services for Resist Management -->
-    <!--                                -->
+    <!-- Services for WeCreate App -->
     <!--
     All of these services should throw errors the user can understand, and log errors that an admin / developer can understand.
     -->
@@ -105,7 +103,7 @@ along with this software (see the LICENSE.md file). If not, see
             <entity-find-count entity-name="mantle.work.effort.WorkEffortDetailPartyWithRoleAndFromToRelationshipWithEmplPositionApplicationWithCommunicationEventContent" count-field="projectViewCount" distinct="true">
                 <econdition field-name="effortPartyWorkEffortId" from="workEffortId"/>
                 <econdition field-name="effortWorkEffortTypeEnumId" value="WetProject"/>
-                <econdition field-name="effortPurposeEnumId" value="WepPrResistProject"/>
+                <econdition field-name="effortPurposeEnumId" value="WepPrWeCreateProject"/>
 
                 <!-- Conditions for visibility check -->
                 <econdition field-name="relationshipToRoleTypeId" value="ClientManager"/>
@@ -137,7 +135,7 @@ along with this software (see the LICENSE.md file). If not, see
             <entity-find-count entity-name="mantle.work.effort.WorkEffortDetailPartyWithRoleAndFromToRelationshipWithEmplPositionApplicationWithCommunicationEventContent" count-field="projectEditCount">
                 <econdition field-name="effortPartyWorkEffortId" from="workEffortId"/>
                 <econdition field-name="effortWorkEffortTypeEnumId" value="WetProject"/>
-                <econdition field-name="effortPurposeEnumId" value="WepPrResistProject"/>
+                <econdition field-name="effortPurposeEnumId" value="WepPrWeCreateProject"/>
 
                 <!-- Conditions for visibility check -->
                 <econdition field-name="effortPartyRoleTypeId" value="Manager"/>
@@ -546,7 +544,7 @@ along with this software (see the LICENSE.md file). If not, see
             <parameter name="estimatedWorkDuration"/>
             <parameter name="description"/>
             <parameter name="workEffortTypeEnumId" default-value="WetProject"/>
-            <parameter name="purposeEnumId" default-value="WepPrResistProject"/>
+            <parameter name="purposeEnumId" default-value="WepPrWeCreateProject"/>
             <parameter name="statusId" default-value="WeInPlanning"/>
 
             <parameter name="vendorManagerPartyId" default="partyId"/>
@@ -560,7 +558,7 @@ along with this software (see the LICENSE.md file). If not, see
             <service-call name="WeCreate.WeCreateServices.check#AccountEdit" in-map="[partyId:partyId]" out-map="AccountEdit"/>
             <if condition="!AccountEdit?.allowed"><return error="true" message="Cannot create Project"/></if>
 
-            <service-call name="mantle.work.ProjectServices.create#Project" in-map="context + [statusFlowId:'ResistProject']" out-map="context"/>
+            <service-call name="mantle.work.ProjectServices.create#Project" in-map="context + [statusFlowId:'WeCreateProject']" out-map="context"/>
         </actions>
     </service>
 
@@ -573,14 +571,14 @@ along with this software (see the LICENSE.md file). If not, see
             <parameter name="description"/>
             <parameter name="estimatedStartDate" type="Timestamp" format="yyyy-MM-dd"/>
             <parameter name="estimatedWorkDuration"/>
-            <parameter name="purposeEnumId" default-value="WepPrResistProject"/>
+            <parameter name="purposeEnumId" default-value="WepPrWeCreateProject"/>
         </in-parameters>
         <actions>
             <service-call name="WeCreate.WeCreateServices.check#ProjectEdit" in-map="[workEffortId:workEffortId]" out-map="projectEdit"/>
             <if condition="!projectEdit?.allowed"><return error="true" message="Cannot update Project"/></if>
 
-            <!-- Added statusFlowId so that when updating project, old project data will be changed to a Resist Project -->
-            <service-call name="mantle.work.ProjectServices.update#Project" in-map="context + [statusFlowId:'ResistProject']"/>
+            <!-- Added statusFlowId so that when updating project, old project data will be changed to a WeCreate Project -->
+            <service-call name="mantle.work.ProjectServices.update#Project" in-map="context + [statusFlowId:'WeCreateProject']"/>
         </actions>
     </service>
 
@@ -873,7 +871,7 @@ along with this software (see the LICENSE.md file). If not, see
             <!-- Find the projects that are starting in the next week, day, or 3 hours with a tolerance of 2/3s -->
             <entity-find entity-name="mantle.work.effort.WorkEffort" list="projectList">
                 <econdition field-name="workEffortTypeEnumId" value="WetProject"/>
-                <econdition field-name="purposeEnumId" value="WepPrResistProject"/>
+                <econdition field-name="purposeEnumId" value="WepPrWeCreateProject"/>
                 <econditions combine="or">
                     <econditions>
                         <econdition field-name="estimatedStartDate" operator="greater-equals" from="weekStartDate"/>
@@ -927,7 +925,7 @@ along with this software (see the LICENSE.md file). If not, see
                     <entity-find-count entity-name="moqui.security.user.NotificationMessageByUser" count-field="notificationMessageUserCount">
                         <econdition field-name="userId" from="userAccount.userId"/>
                         <econdition field-name="subTopic" from="workEffort.workEffortId"/>
-                        <econdition field-name="topic" value="ResistProjectReminder"/>
+                        <econdition field-name="topic" value="WeCreateProjectReminder"/>
                         <econditions combine="or">
                             <econditions>
                                 <econdition field-name="sentDate" operator="greater-equals" from="projectWeekStartDate" ignore="projectWeekEndDate &lt; nowTimestamp || projectWeekStartDate &gt; nowTimestamp"/>
@@ -1011,7 +1009,7 @@ along with this software (see the LICENSE.md file). If not, see
 
                 <script><![CDATA[
                     def nm = ec.makeNotificationMessage()
-                    nm.topic("ResistProjectReminder").message(workEffort).subTopic(workEffort.workEffortId).title(title)
+                    nm.topic("WeCreateProjectReminder").message(workEffort).subTopic(workEffort.workEffortId).title(title)
                     if (filteredUserAccountList) nm.userIds(new HashSet(filteredUserAccountList*.userId))
                     nm.send(true)
                     ]]></script>

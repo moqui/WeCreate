@@ -4,7 +4,7 @@ Vue.component('r-toolbar-left', {
     template:
         `<q-btn v-if="backState" flat round dense icon="arrow_back_ios_new" class="q-mr-sm" @click.prevent="goLastPath()"/>`//+
         // `<m-link :href="firstPath"><div class="q-mx-md q-mt-sm">` +
-        // `<img src="/r/images/ResistSquare.png" alt="Home" height="32">` +
+        // `<img src="/wcstatic/images/WeCreateSquare.png" alt="Home" height="32">` +
         // `</div></m-link>`
     ,
     methods: {

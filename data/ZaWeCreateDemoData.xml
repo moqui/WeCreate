@@ -65,5 +65,129 @@ along with this software (see the LICENSE.md file). If not, see
         <mantle.humanres.position.EmplPositionClassSkill skillTypeEnumId="StFashion"/>
     </mantle.humanres.position.EmplPositionClass>
 
+    <!-- ============================ -->
+    <!-- Demo accounts, projects, etc -->
+    <!-- ============================ -->
+
+    <contactMechs trustLevelEnumId="CmtlNew" infoString="ElonMusk1@moqui.org" contactMechTypeEnumId="CmtEmailAddress" contactMechId="elonmuskemail"/>
+    <parties pseudoId="elonmuskparty" ownerPartyId="_NA_" partyTypeEnumId="PtyPerson" disabled="N" partyId="elonmusk">
+        <userAccounts emailAddress="ElonMusk1@moqui.org" disabled="N" userFullName="Elon Musk"
+                userId="elonmuskuser" username="ElonMusk"
+                currentPassword="16ac58bbfa332c1c55bd98b53e60720bfa90d394" passwordHashType="SHA"
+                passwordHint="framework name, lowercase" requirePasswordChange="N">
+            <moqui.security.UserPasswordHistory fromDate="1670441119927"/>
+            <notificationTopics emailNotifications="Y" topic="WeCreateProjectReminder"/>
+            <groups userGroupId="WE_CREATE_USERS" fromDate="1670441119960"/>
+        </userAccounts>
+        <contactMechs contactMechId="elonmuskemail" fromDate="1670441119840" contactMechPurposeId="EmailPrimary"/>
+        <person lastName="Musk" firstName="Elon"/>
+    </parties>
+    <parties pseudoId="elonmusk" ownerPartyId="_NA_" partyTypeEnumId="PtyPerson" disabled="N" partyId="elonmuskaccount">
+        <settings settingValue="PtyRestricted" partySettingTypeId="PartyVisibility"/>
+        <mantle.humanres.ability.PartySkill skillTypeEnumId="StInfluencer"/>
+        <roles roleTypeId="Customer"/>
+        <roles roleTypeId="ClientManager"/>
+        <roles roleTypeId="Supplier"/>
+        <roles roleTypeId="Talent"/>
+        <mantle.humanres.position.EmplPositionClassParty fromDate="1670441142590" emplPositionClassId="Model"/>
+        <classifications fromDate="1670441142590" partyClassificationId="PchcBrown"/>
+        <classifications fromDate="1670441142590" partyClassificationId="PcecGreen"/>
+        <classifications fromDate="1670441142590" partyClassificationId="PcgMale"/>
+        <mantle.party.PartyDimension uomId="LEN_in" value="72" dimensionDate="1670965757060" uomDimensionTypeId="Height"/>
+    </parties>
+    <mantle.party.PartyRelationship fromPartyId="elonmusk" toRoleTypeId="ClientManager" fromRoleTypeId="Administrator"
+            fromDate="1670441131366" partyRelationshipId="elonmuskaccountmanagerrelationship"
+            relationshipTypeEnumId="PrtManager" toPartyId="elonmuskaccount"/>
+    <mantle.party.PartyRelationship fromPartyId="elonmusk" toRoleTypeId="Talent" fromRoleTypeId="Administrator"
+            fromDate="1670441142588" partyRelationshipId="elonmuskaccounttalentrelationship"
+            relationshipTypeEnumId="PrtManager" toPartyId="elonmuskaccount"/>
+    <!--
+    <WeCreate.WeCreateServices.upload-ProfilePictureAttachmentInternal partyId="elonmuskaccount"/>
+    <WeCreate.WeCreateServices.upload-PostAttachmentResourceInternal partyId="elonmuskaccount"
+            contentFileLocation="component://moqui-image/data/images/Wolf_Moving_Amination.gif"/>
+    -->
+
+    <contactMechs trustLevelEnumId="CmtlNew" infoString="HarrisonFord1@moqui.org" contactMechTypeEnumId="CmtEmailAddress" contactMechId="harrisonfordemail"/>
+    <parties pseudoId="harrisonfordparty" ownerPartyId="_NA_" partyTypeEnumId="PtyPerson" disabled="N" partyId="harrisonford">
+        <userAccounts emailAddress="HarrisonFord1@moqui.org" disabled="N" userFullName="Harrison Ford"
+                userId="harrisonforduser" username="HarrisonFord"
+                currentPassword="16ac58bbfa332c1c55bd98b53e60720bfa90d394" passwordHashType="SHA"
+                passwordHint="framework name, lowercase" requirePasswordChange="N">
+            <moqui.security.UserPasswordHistory fromDate="1670442896068"/>
+            <notificationTopics emailNotifications="Y" topic="WeCreateProjectReminder"/>
+            <groups userGroupId="WE_CREATE_USERS" fromDate="1670442896092"/>
+        </userAccounts>
+        <contactMechs contactMechId="harrisonfordemail" fromDate="1670442896032" contactMechPurposeId="EmailPrimary"/>
+        <person lastName="Ford" firstName="Harrison"/>
+    </parties>
+    <parties pseudoId="harrisonford" ownerPartyId="_NA_" partyTypeEnumId="PtyPerson" disabled="N" partyId="harrisonfordaccount">
+        <settings settingValue="PtyRestricted" partySettingTypeId="PartyVisibility"/>
+        <mantle.humanres.ability.PartySkill skillTypeEnumId="StInfluencer"/>
+        <roles roleTypeId="Customer"/>
+        <roles roleTypeId="ClientManager"/>
+        <mantle.humanres.position.EmplPositionClassParty fromDate="1670441142590" emplPositionClassId="Model"/>
+        <classifications fromDate="1670441142590" partyClassificationId="PchcBrown"/>
+        <classifications fromDate="1670441142590" partyClassificationId="PcgMale"/>
+        <classifications fromDate="1670441142590" partyClassificationId="PcecHazel"/>
+        <contents partyContentId="harrisonforddescription" contentDate="1670886966728" partyContentTypeEnumId="PcntBio" userId="harrisonforduser">
+            <description><![CDATA[Harrison Ford (born July 13, 1942) is an American actor. His films have grossed more than $5.4 billion in North America and more than $9.3 billion worldwide, making him the seventh-highest-grossing actor in North America. He is the recipient of various accolades, including the AFI Life Achievement Award and the Cecil B. DeMille Award, in addition to nominations for an Academy Award and four Golden Globe Awards. He has been a leading man in films of several genres and is regarded as an American cultural icon.]]></description></contents>
+        <mantle.party.PartyDimension uomId="LEN_in" value="72" dimensionDate="1670966544657" uomDimensionTypeId="Height"/>
+    </parties>
+    <mantle.party.PartyRelationship fromPartyId="harrisonford" toRoleTypeId="ClientManager"
+            fromRoleTypeId="Administrator" fromDate="1670442925712" partyRelationshipId="harrisonfordmanagerrelationship"
+            relationshipTypeEnumId="PrtManager" toPartyId="harrisonfordaccount"/>
+    <!--
+    <WeCreate.WeCreateServices.upload-ProfilePictureAttachmentInternal partyId="harrisonfordaccount"/>
+    <WeCreate.WeCreateServices.upload-PostAttachmentResourceInternal partyId="harrisonfordaccount"
+            contentFileLocation="component://moqui-image/data/images/autumn.tif"/>
+    -->
+
+    <mantle.humanres.position.EmplPosition emplPositionId="safariModelElonMusk" emplPositionClassId="Model" statusId="EmpsActive">
+        <mantle.humanres.employment.EmploymentApplication applyingPartyId="elonmuskaccount" statusId="EaApproved" referredByEnumId="EarbPersonal" employmentApplicationId="safariModelElonMuskAppl" applicationDate="1681316115806"/>
+    </mantle.humanres.position.EmplPosition>
+    <mantle.humanres.position.EmplPosition emplPositionId="safariPhotographerHarrisonFord" emplPositionClassId="Photographer" statusId="EmpsActive">
+        <mantle.humanres.employment.EmploymentApplication applyingPartyId="harrisonfordaccount" statusId="EaApproved" referredByEnumId="EarbPersonal" employmentApplicationId="safariPhotographerHarrisonFordAppl" applicationDate="1681316124072"/>
+    </mantle.humanres.position.EmplPosition>
+    <workEfforts workEffortId="safarifantasyshoot" workEffortTypeEnumId="WetProject" purposeEnumId="WepPrWeCreateProject" estimatedStartDate="1670442900000" statusId="WeInPlanning" workEffortName="Safari Fantasy Shoot" estimatedWorkDuration="1" ownerPartyId="harrisonfordaccount" visibilityEnumId="WevAllUsers">
+        <description><![CDATA[Need to Get:
+- Animal Costume
+- Safari Background
+- Spell Book
+- Magical Artifact
+
+Need to Setup:
+- Monopod
+- Lights calibrated for sunny Safari day
+
+Need to Bring:
+- Water
+- Food]]></description>
+        <parties roleTypeId="Manager" fromDate="1670443145795" statusId="WeptAssigned" partyId="harrisonford"/>
+        <parties roleTypeId="Manager" fromDate="1670443145795" statusId="WeptAssigned" partyId="harrisonfordaccount"/>
+        <parties roleTypeId="Talent" emplPositionId="safariPhotographerHarrisonFord" fromDate="1681316126196" statusId="WeptAssigned" partyId="harrisonfordaccount"/>
+        <parties roleTypeId="Talent" emplPositionId="safariModelElonMusk" fromDate="1681316128829" statusId="WeptAssigned" partyId="elonmuskaccount"/>
+        <mantle.work.effort.WorkEffortEmplPosition emplPositionId="safariModelElonMusk"/>
+        <mantle.work.effort.WorkEffortEmplPosition emplPositionId="safariPhotographerHarrisonFord"/>
+    </workEfforts>
+    <!-- <WeCreate.WeCreateServices.upload-ProjectPostAttachmentResourceInternal workEffortId="safarifantasyshoot"
+            contentFileLocation="component://moqui-image/data/images/elon_musk_in_an_animal_costume_safari_background_holding_a_spell_book.jpg"/> -->
+    <mantle.humanres.position.EmplPosition emplPositionId="storePhotographerElonMusk" emplPositionClassId="Model" statusId="EmpsActive">
+        <mantle.humanres.employment.EmploymentApplication applyingPartyId="elonmuskaccount" statusId="EaApplied" referredByEnumId="EarbPersonal" employmentApplicationId="storePhotographerElonMuskAppl" applicationDate="1681316115806"/>
+    </mantle.humanres.position.EmplPosition>
+    <workEfforts workEffortId="goToStore" workEffortTypeEnumId="WetProject" purposeEnumId="WepPrWeCreateProject" estimatedStartDate="1670442060000" statusId="WeInPlanning" workEffortName="Go to the Store" estimatedWorkDuration="1" ownerPartyId="elonmuskaccount" visibilityEnumId="WevAllUsers">
+        <description><![CDATA[Get:
+- Zebra Patterned Fabric
+- 15ft by 20ft of Grasslands Fabric
+- Golden Horn with Elastic Band
+- Leather Diary]]></description>
+        <parties roleTypeId="Manager" fromDate="1670442101683" statusId="WeptAssigned" partyId="elonmusk"/>
+        <parties roleTypeId="Manager" fromDate="1670442101684" statusId="WeptAssigned" partyId="elonmuskaccount"/>
+        <mantle.work.effort.WorkEffortEmplPosition emplPositionId="storePhotographerElonMusk"/>
+    </workEfforts>
+    <!-- <WeCreate.WeCreateServices.upload-ProjectPostAttachmentResourceInternal workEffortId="goToStore"
+            contentFileLocation="component://moqui-image/data/images/All_Around_Amazing_Barnstar_Hires.png"/> -->
+
+    <communicationEvents fromPartyId="elonmuskaccount" entryDate="1681321444970" body="Hey Harrison, my picture in the project we did looks kinda weird. Why is it like that?" communicationEventTypeId="WeCreateChatMessage" statusId="CeReceived" communicationEventId="elonharrisonmessage1" toPartyId="harrisonfordaccount"/>
+    <communicationEvents fromPartyId="harrisonfordaccount" entryDate="1681321528318" body="It&apos;s because you&apos;re not actually Elon, and that was generated by an artificial intelligence." communicationEventTypeId="WeCreateChatMessage" statusId="CeReceived" communicationEventId="elonharrisonmessage2" toPartyId="elonmuskaccount"/>
 
 </entity-facade-xml>
