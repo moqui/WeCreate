@@ -197,39 +197,6 @@ along with this software (see the LICENSE.md file). If not, see
         <alias entity-alias="PTRL" name="roleTypeId"/>
     </view-entity>
 
-    <!-- TODO: deprecate, use simpler variation -->
-    <view-entity entity-name="PartyDetailAndRoleAndContentAndSettingAndRelationshipAndEmplApplication" package="mantle.party">
-        <member-entity entity-alias="PTY" entity-name="mantle.party.Party"/>
-        <member-entity entity-alias="PCNT" entity-name="mantle.party.PartyContent" join-from-alias="PTY" join-optional="true">
-            <key-map field-name="partyId"/></member-entity>
-        <member-entity entity-alias="PSET" entity-name="mantle.party.PartySetting" join-from-alias="PTY" join-optional="true">
-            <key-map field-name="partyId"/></member-entity>
-        <member-entity entity-alias="PSTYP" entity-name="mantle.party.PartySettingType" join-from-alias="PSET" join-optional="true">
-            <key-map field-name="partySettingTypeId"/></member-entity>
-        <member-entity entity-alias="PREL" entity-name="mantle.party.PartyRelationship" join-from-alias="PTY">
-            <key-map field-name="partyId" related="toPartyId"/></member-entity>
-        <member-entity entity-alias="PTRL" entity-name="mantle.party.PartyRole" join-from-alias="PTY">
-            <key-map field-name="partyId"/></member-entity>
-        <member-entity entity-alias="EMAP" entity-name="mantle.humanres.employment.EmploymentApplication" join-from-alias="PTY" join-optional="true">
-            <key-map field-name="partyId" related="applyingPartyId"/></member-entity>
-        <member-entity entity-alias="EAST" entity-name="moqui.basic.StatusItem" join-from-alias="EMAP" join-optional="true">
-            <key-map field-name="statusId"/></member-entity>
-        <member-entity entity-alias="WEP" entity-name="mantle.work.effort.WorkEffortParty" join-from-alias="PTY" join-optional="true">
-            <key-map field-name="partyId"/></member-entity>
-        <member-entity entity-alias="EPST" entity-name="moqui.basic.StatusItem" join-from-alias="WEP" join-optional="true">
-            <key-map field-name="statusId"/></member-entity>
-        <alias-all entity-alias="PTY" prefix="party"/>
-        <alias-all entity-alias="PCNT" prefix="content"/>
-        <alias-all entity-alias="PSET" prefix="setting"/>
-        <alias-all entity-alias="PSTYP" prefix="settingType"/>
-        <alias-all entity-alias="PREL" prefix="relationship"/>
-        <alias-all entity-alias="PTRL" prefix="role"/>
-        <alias-all entity-alias="EMAP" prefix="application"/>
-        <alias-all entity-alias="EAST" prefix="applicationStatus"/>
-        <alias-all entity-alias="WEP" prefix="effortParty"/>
-        <alias-all entity-alias="EPST" prefix="effortPartyStatus"/>
-    </view-entity>
-
     <view-entity entity-name="PartyDetailAndRoleAndSettingAndRelationship" package="mantle.party">
         <member-entity entity-alias="PTY" entity-name="mantle.party.Party"/>
         <member-entity entity-alias="PSET" entity-name="mantle.party.PartySetting" join-from-alias="PTY" join-optional="true">

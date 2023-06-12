@@ -20,18 +20,14 @@ along with this software (see the LICENSE.md file). If not, see
     <parameter name="fromPartyId"/>
 
     <always-actions>
-        <!-- TODO: Fix how this is handled for john.doe -->
-        <entity-find entity-name="mantle.party.PartyDetailAndRoleAndContentAndSettingAndRelationshipAndEmplApplication" list="accountList" distinct="true" cache="true">
+        <entity-find entity-name="mantle.party.PartyDetailAndRoleAndSettingAndRelationship" list="accountList" distinct="true" cache="true">
             <econdition field-name="roleRoleTypeId" value="ClientManager"/>
             <econdition field-name="settingPartySettingTypeId" value="PartyVisibility"/>
-            <!-- <econdition field-name="contentPartyContentTypeEnumId" value="PcntPrimaryImage"/> -->
-            <!-- <econdition field-name="contentContentLocation" operator="is-not-null"/> -->
             <econdition field-name="relationshipRelationshipTypeEnumId" value="PrtManager"/>
             <econdition field-name="relationshipFromRoleTypeId" value="Administrator"/>
             <econdition field-name="relationshipToRoleTypeId" value="ClientManager"/>
             <econdition field-name="relationshipFromPartyId" from="ec.user.userAccount?.partyId"/>
             <date-filter from-field-name="relationshipFromDate" thru-field-name="relationshipThruDate"/>
-            <date-filter from-field-name="effortPartyFromDate" thru-field-name="effortPartyThruDate"/>
             <select-field field-name="partyPartyId"/>
         </entity-find>
         <set field="fromPartyId" from="accountList?.getFirst()?.partyPartyId"/>
@@ -58,6 +54,7 @@ along with this software (see the LICENSE.md file). If not, see
         <set field="newMessage.entryDate" from="entryDate"/>
         <script>ec.web.sendJsonResponse([newMessage:newMessage])</script>
     </actions><default-response type="none"/></transition>
+
     <transition name="getMessages" read-only="true">
         <actions>
             <set field="accountMessageList" from="[fromPartyId, toPartyId]"/>
@@ -233,6 +230,6 @@ along with this software (see the LICENSE.md file). If not, see
                     },
                 }
             </script>
-            ]]></text></render-mode>
+        ]]></text></render-mode>
     </widgets>
 </screen>
