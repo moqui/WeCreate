@@ -2,6 +2,6 @@
 <component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/moqui-conf-3.xsd"
         name="WeCreate" version="1.0.0">
     <depends-on name="moqui-fop" version=""/>
+    <depends-on name="moqui-image" version=""/>
     <depends-on name="SimpleScreens" version=""/>
-    <!-- not in addons.xml by default, to be merged into moqui-fop (shares many libraries): <depends-on name="moqui-image" version="0.1.0"/> -->
 </component>
