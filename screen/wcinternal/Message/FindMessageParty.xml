@@ -17,41 +17,48 @@ along with this software (see the LICENSE.md file). If not, see
 
     <actions>
         <!-- TODO use view-entity without PartyContent, get in separate query -->
-        <entity-find entity-name="mantle.party.PartyDetailAndRoleAndContentAndSettingAndRelationshipAndEmplApplication"
-                list="accountList" distinct="true" cache="true">
+        <entity-find entity-name="mantle.party.PartyDetailAndRoleAndSettingAndRelationship"
+                list="accountList" distinct="true">
+            <search-form-inputs default-order-by="partyPseudoId"/>
             <econdition field-name="roleRoleTypeId" value="ClientManager"/>
             <econdition field-name="settingPartySettingTypeId" value="PartyVisibility"/>
-            <!-- <econdition field-name="contentPartyContentTypeEnumId" value="PcntPrimaryImage"/> -->
-            <!-- <econdition field-name="contentContentLocation" operator="is-not-null"/> -->
             <econdition field-name="relationshipRelationshipTypeEnumId" value="PrtManager"/>
             <econdition field-name="relationshipFromRoleTypeId" value="Administrator"/>
             <econdition field-name="relationshipToRoleTypeId" value="ClientManager"/>
             <econdition field-name="relationshipFromPartyId" operator="not-equals" from="ec.user.userAccount?.partyId"/>
             <date-filter from-field-name="relationshipFromDate" thru-field-name="relationshipThruDate"/>
-            <!-- <date-filter from-field-name="effortPartyFromDate" thru-field-name="effortPartyThruDate"/> -->
-            <select-field field-name="partyPartyId,partyPseudoId,contentPartyContentId"/>
-            <!-- <order-by field-name="-contentContentDate"/> -->
+            <select-field field-name="partyPartyId,partyPseudoId"/>
         </entity-find>
 
-        <set field="messageTitleList" from="[[thisIsRequiredBecause:'a form list needs one entry']]"/>
+        <!-- needed? <set field="messageTitleList" from="[[thisIsRequiredBecause:'a form list needs one entry']]"/> -->
     </actions>
 
     <widgets>
         <text><![CDATA[<q-page-container class="q-ma-sm"><q-page>]]></text>
-        <form-list name="ListMessage" list="messageTitleList" skip-header="true" skip-form="true">
-<!--            <field name="title"><default-field><label text="Messages" type="h2"/></default-field></field>-->
-        </form-list>
+        <!-- <form-list name="ListMessage" list="messageTitleList" skip-header="true" skip-form="true">
+            <!- - <field name="title"><default-field><label text="Messages" type="h2"/></default-field></field> - ->
+        </form-list> -->
         <container-row><row-col lg="12">
             <form-list name="ListAccounts" list="accountList" skip-form="true" skip-header="true">
                 <row-actions>
                     <service-call name="WeCreate.WeCreateServices.check#AccountView" in-map="[partyId:partyPartyId]" out-map="context"/>
+                    <entity-find entity-name="mantle.party.PartyContent" list="partyContentList">
+                        <econdition field-name="partyId" from="partyPartyId"/>
+                        <econdition field-name="partyContentTypeEnumId" value="PcntPrimaryImage"/>
+                        <econdition field-name="contentLocation" operator="is-not-null"/>
+                        <order-by field-name="-contentDate"/>
+                    </entity-find>
+                    <set field="partyContent" from="partyContentList.getFirst()"/>
                 </row-actions>
                 <field name="profilePicture"><default-field>
-                    <link url="../FindMessage" text="${partyPseudoId}" link-type="anchor" parameter-map="[toPartyId:partyPartyId]">
-                    <image url="/wcinternal/downloadPartyContent" url-type="transition" parameter-map="[partyContentId:contentPartyContentId]" width="50px"/>
+                    <link url="../FindMessage" text="${partyPseudoId}" link-type="anchor" condition="partyContent"
+                            parameter-map="[toPartyId:partyPartyId]">
+                        <image url="/wcinternal/downloadPartyContent" url-type="transition"
+                                parameter-map="[partyContentId:partyContent.partyContentId]" width="50px"/>
                     </link>
                 </default-field></field>
-                <field name="pseudoId"><default-field><link url="../FindMessage" text="${partyPseudoId}" link-type="anchor" parameter-map="[toPartyId:partyPartyId]"/></default-field></field>
+                <field name="pseudoId"><default-field><link url="../FindMessage" text="${partyPseudoId}" link-type="anchor"
+                        parameter-map="[toPartyId:partyPartyId]"/></default-field></field>
             </form-list>
         </row-col></container-row>
         <text><![CDATA[</q-page></q-page-container><r-menu></r-menu>]]></text>
