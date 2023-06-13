@@ -91,12 +91,12 @@ along with this software (see the LICENSE.md file). If not, see
             <filter-map-list list="partyContentList" to-list="profileContentList"><field-map field-name="partyContentTypeEnumId" value="PcntPrimaryImage"/></filter-map-list>
             <filter-map-list list="partyContentList" to-list="partyContentBioList"><field-map field-name="partyContentTypeEnumId" value="PcntBio"/></filter-map-list>
         </else></if>
-        <set field="partyProfilePictureList" from="[[partyContentId:profileContentList?.first()?.partyContentId, partyText:party?.pseudoId ?: (party?.person?.firstName + ' ' + party?.person?.lastName) ?: party?.organization?.organizationName]]"/>
-        <set field="bio" value=""/><if condition="partyContentBioList?.size() &gt; 0"><set field="bio" from="partyContentBioList?.first()?.description"/></if>
+        <set field="partyProfilePictureList" from="[[partyContentId:profileContentList?.getAt(0)?.partyContentId, partyText:party?.pseudoId ?: (party?.person?.firstName + ' ' + party?.person?.lastName) ?: party?.organization?.organizationName]]"/>
+        <set field="bio" value=""/><if condition="partyContentBioList?.size() &gt; 0"><set field="bio" from="partyContentBioList?.getAt(0)?.description"/></if>
 
         <set field="postTitleList" from="[]"/><set field="postList" from="[]"/><set field="intermediatePostList" from="[]"/>
         <if condition="postContentList?.size() &gt; 0">
-            <set field="postTitleList" from="[[communicationEventContentId:postContentList?.first()?.communicationEventContentId]]"/>
+            <set field="postTitleList" from="[[communicationEventContentId:postContentList?.getAt(0)?.communicationEventContentId]]"/>
 
             <!-- Build the post list in 3s for showing them in a grid of 3s. Not the best way to do it, and could do it better through more flexible form list grids. -->
             <iterate list="postContentList" entry="communicationEventAndContent">
@@ -117,16 +117,22 @@ along with this software (see the LICENSE.md file). If not, see
     </actions>
     <widgets>
         <form-list name="PartyProfilePictureSection" list="partyProfilePictureList" skip-form="true" skip-header="true" paginate="false" saved-finds="false" header-dialog="false">
-            <row-actions><set field="contentUrl" from="sri.buildUrl('/wcinternal/downloadPartyContent').addParameter('partyContentId', partyContentId).getUrlWithParams()"/></row-actions>
-            <field name="content"><conditional-field condition="accountEdit?.allowed"><container-dialog id="UpdateProfilePicture" button-text="Update Picture">
+            <row-actions>
+                <set field="contentUrl" from="partyContentId ? sri.buildUrl('/wcinternal/downloadPartyContent').addParameter('partyContentId', partyContentId).getUrlWithParams(): null"/>
+            </row-actions>
+            <field name="content"><conditional-field condition="accountEdit?.allowed">
+                <container-dialog id="UpdateProfilePicture" button-text="Update Picture">
                     <!-- This is a bit of a hack so that the dialog button is openable through an image press. -->
-                    <text><![CDATA[<template v-slot:button><img src="${contentUrl}" width="100px"/></template>]]></text>
+                    <text><![CDATA[<template v-slot:button><#if contentUrl?has_content><img src="${contentUrl}" width="100px"/><#else>Add Image</#if></template>]]></text>
                     <form-single name="UpdateProfilePictureForm" transition="updateProfilePicture" pass-through-parameters="true">
                         <field name="partyId"><default-field><hidden/></default-field></field>
                         <field name="contentFile"><default-field><file/></default-field></field>
                         <field name="submit"><default-field><submit/></default-field></field>
-                    </form-single></container-dialog></conditional-field>
-                <default-field><image url="${contentUrl}" url-type="plain" width="100px"/></default-field></field>
+                    </form-single>
+                </container-dialog>
+            </conditional-field><default-field>
+                <image condition="contentUrl" url="${contentUrl}" url-type="plain" width="100px"/>
+            </default-field></field>
             <!-- Post button dialog should have something like: https://v1.quasar.dev/vue-components/uploader -->
             <field name="uploadPostButton"><conditional-field condition="accountEdit?.allowed">
                 <container-dialog id="UploadPost" button-text="Add Post">
