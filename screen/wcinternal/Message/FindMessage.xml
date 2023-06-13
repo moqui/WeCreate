@@ -115,7 +115,7 @@ along with this software (see the LICENSE.md file). If not, see
         <text><![CDATA[]]></text>
         <render-mode><text type="qvue"><![CDATA[
             <template>
-                <q-page-container class="q-ma-sm"><q-page :style-fn="$root.myTweak" style="display: flex; flex-direction: column; justify-content: flex-end;">
+                <q-page-container class="q-ma-sm"><q-page :style-fn="$root.qLayoutMinHeight" style="display: flex; flex-direction: column; justify-content: flex-end;">
                 <div class="q-pa-md row justify-center" style="">
 
                     <div style="width: 100%; max-width: 400px;  margin-bottom: 28px;">
